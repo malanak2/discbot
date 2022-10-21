@@ -85,7 +85,7 @@ async def addrole(ctx: discord.Interaction, user: discord.User, role: discord.Ro
                 embAddRole = Embed(title="Role Manager", description=f"Added role {role.name} to {user.name}", color=discord.Color.green())
                 await ctx.response.send_message(embed=embAddRole)
             except Exception as e:
-                print(f"Not enough perms to add role {role.name}")
+                print(f"Not enough permissions to add role {role.name}")
                 log.append(f"Not enough perms to add role {role.name}")
                 embNEP = Embed(title="Role Manager", description=f"I do not have the permissions to manage role {role.name}", color=discord.Color.red())
                 await ctx.response.send_message(embed=embNEP)

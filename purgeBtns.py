@@ -17,7 +17,7 @@ class Buttons(discord.ui.View):
         adRoleId = int(os.getenv('ADMINROLE'))
         adRole = ctx.guild.get_role(adRoleId)
         if ctx.user.roles.__contains__(adRole):
-            embPurged = discord.Embed(title="Purge", description=f"Succesfully purged {ctx.channel.name}", color=discord.Color.red())
+            embPurged = discord.Embed(title="Purge", description=f"Succesfully purged <{ctx.channel.name}>", color=discord.Color.red())
             channel = ctx.channel
             view = Buttons()
             view.clear_items()
