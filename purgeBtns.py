@@ -1,3 +1,5 @@
+# prugeBtns.py
+
 import os
 import discord
 from dotenv import load_dotenv
@@ -11,6 +13,7 @@ class Buttons(discord.ui.View):
         super().__init__(timeout=timeout)
     @discord.ui.button(label="Yes",style=discord.ButtonStyle.red)
     async def red_button(self, ctx: discord.Interaction, button: discord.ui.Button):
+        global log
         adRoleId = int(os.getenv('ADMINROLE'))
         adRole = ctx.guild.get_role(adRoleId)
         if ctx.user.roles.__contains__(adRole):
@@ -27,6 +30,7 @@ class Buttons(discord.ui.View):
 
     @discord.ui.button(label="No",style=discord.ButtonStyle.green)
     async def green_button(self, ctx: discord.Interaction, button: discord.ui.Button):
+        global log
         adRoleId = int(os.getenv('ADMINROLE'))
         adRole = ctx.guild.get_role(adRoleId)
         if ctx.user.roles.__contains__(adRole):
@@ -39,4 +43,5 @@ class Buttons(discord.ui.View):
 
 
 def logRet():
+    global log
     return log

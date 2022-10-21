@@ -36,6 +36,7 @@ embNoPerms = Embed(title="Permission", description="You do not have the permissi
 
 @tree.command(name="ping", description="Returns bot latency and says pong!", guild=guild)
 async def ping(ctx: discord.Interaction):
+    global log
     embResp = Embed(title="🏓Pong!")
     embAdminResp = Embed(title="🏓Pong!", description=f"Bot latency is <{client.latency}> seconds")
     await ctx.response.send_message(embed=embResp)
@@ -45,6 +46,7 @@ async def ping(ctx: discord.Interaction):
 
 @tree.command(name="roll", description="Does something, nobody knows what!", guild=guild)
 async def roll(ctx: discord.Interaction):
+    global log
     num = random.randint(0, 100)
     print(f"number: {num}, user: {ctx.user.name}")
     log.append(f"number: {num}, user: {ctx.user.name}")
@@ -75,6 +77,7 @@ async def roll(ctx: discord.Interaction):
 async def addrole(ctx: discord.Interaction, user: discord.User, role: discord.Role):
     if ctx.user.roles.__contains__(ctx.guild.get_role(adminRoleId)):
         if not user.roles.__contains__(role):
+            global log
             try:
                 print(f"Added role <{role}> to <{user}>")
                 log.append(f"Added role <{role}> to <{user}>")
@@ -94,6 +97,7 @@ async def addrole(ctx: discord.Interaction, user: discord.User, role: discord.Ro
 
 @client.event
 async def on_message(msg: discord.Message):
+    global log
     timestamp = int(time())
     curdattime = datetime.fromtimestamp(timestamp)
     log.append(f"Date and time <{curdattime}> : Author <{msg.author}> : Msg Channel <{msg.channel}> : Message <{msg.content}> : Bot embeds {msg.embeds}")
@@ -102,6 +106,7 @@ async def on_message(msg: discord.Message):
 @tree.command(name="removerole", description="Removes said role to mentioned guy", guild=guild)
 async def addrole(ctx: discord.Interaction, user: discord.User, role: discord.Role):
     if ctx.user.roles.__contains__(ctx.guild.get_role(adminRoleId)):
+        global log
         if user.roles.__contains__(role):
             try:
                 print(f"Removed role <{role}> from <{user}>")
@@ -127,6 +132,7 @@ async def addrole(ctx: discord.Interaction, user: discord.User, role: discord.Ro
 
 @tree.command(name="purge", description="Removes messages from channel this command is used in!", guild=guild)
 async def purge(ctx: discord.Interaction):
+    global log
     if ctx.user.roles.__contains__(ctx.guild.get_role(adminRoleId)):
         embAsk = Embed(title="Purge", description="Are you sure?", color=discord.Color.red())
         await ctx.response.send_message(embed=embAsk, view=Buttons())
@@ -137,6 +143,7 @@ async def purge(ctx: discord.Interaction):
 
 @tree.command(name="writelog", description="Writes log file", guild=guild)
 async def writelog(ctx: discord.Interaction):
+    global log
     adRole = ctx.guild.get_role(adminRoleId)
     if ctx.user.roles.__contains__(adRole):
         exlog = logRet()
