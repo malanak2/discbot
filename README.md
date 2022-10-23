@@ -23,6 +23,12 @@
 #### /writelog
     Writes a log file, this includes: All admin commands usage + rolling 42 on /roll commands, all chat messages and when somebody edits or deletes a message! The log file name will be the date and time of the creation
     
+## Required packages
+                
+1. [discord.py](https://pypi.org/project/discord.py/)
+2. [dotenv](https://pypi.org/project/python-dotenv/)
+                
+
 ## Thanks for using discbot!
 
 # By malanak, 2022
