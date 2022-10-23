@@ -21,7 +21,7 @@
     Asks the sender if he is sure, if yes, it deletes all messages in channel (Due to discord bot interactions limit, it will take some time)
     
 #### /writelog
-    Writes a log file, this includes: All admin commands usage + rolling 42 on /roll commands, all chat messages and when somebody edits(wip) or deletes(wip) a message! The log file name will be the date and time of the creation
+    Writes a log file, this includes: All admin commands usage + rolling 42 on /roll commands, all chat messages and when somebody edits or deletes a message! The log file name will be the date and time of the creation
     
 ## Thanks for using discbot!
 
