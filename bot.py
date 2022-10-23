@@ -59,6 +59,7 @@ async def roll(ctx: discord.Interaction):
                 user = ctx.user
                 role = ctx.guild.get_role(1030846154537177108)
                 ifhasrole = ctx.user.roles.__contains__(role)
+                log.append(f"<{ctx.user}> has rolled 42!")
                 embRespWin = Embed(title="Roll", description=f"You have rolled 42, the answer to everything, on the 100-sided dice and won the **{role.name}** role!", color=discord.Color.red())
                 embRespWinMore = Embed(title="Roll", description=f"You, **{ctx.user.name}**, have rolled 21 again! What a miracle!\n Sadly, there is no reward for that, at least not yet", color=discord.Color.yellow())
                 if ifhasrole:
@@ -94,13 +95,6 @@ async def addrole(ctx: discord.Interaction, user: discord.User, role: discord.Ro
             await ctx.response.send_message(embed=embUserNoRole)
     else:
         await ctx.response.send_message(embed=embNoPerms)
-
-@client.event
-async def on_message(msg: discord.Message):
-    global log
-    timestamp = int(time())
-    curdattime = datetime.fromtimestamp(timestamp)
-    log.append(f"Date and time <{curdattime}> : Author <{msg.author}> : Msg Channel <{msg.channel}> : Message <{msg.content}> : Bot embeds {msg.embeds}")
 
 
 @tree.command(name="removerole", description="Removes said role to mentioned guy", guild=guild)
@@ -150,20 +144,23 @@ async def writelog(ctx: discord.Interaction):
         for x in exlog:
             log.append(x)
         if exists('./logs/latestlog.txt'):
-            timestamp = int(time())
-            curdattime = datetime.fromtimestamp(timestamp)
-            fileName = './logs/' + str(curdattime) + ".txt"
-            leng = len(fileName)
-            stra = []
-            for x in fileName:
-                stra.append(x)
-            for x in range(0, leng):
-                if stra[x] == ":":
-                    stra[x] = ";"
-            finFileName = ''.join(stra)
-            os.rename('./logs/latestlog.txt', finFileName)
+            os.remove('./logs/latestlog.txt')
+        timestamp = int(time())
+        curdattime = datetime.fromtimestamp(timestamp)
+        fileName = './logs/' + str(curdattime) + ".txt"
+        leng = len(fileName)
+        stra = []
+        for x in fileName:
+            stra.append(x)
+        for x in range(0, leng):
+            if stra[x] == ":":
+                stra[x] = ";"
+        finFileName = ''.join(stra)
         open('./logs/latestlog.txt', 'x')
         with open('./logs/latestlog.txt', 'w') as f:
+            for line in log:
+                f.write(f"{line}\n")
+        with open(finFileName, 'w') as f:
             for line in log:
                 f.write(f"{line}\n")
         embSucces = Embed(title="Logger", description="Succesfully logged log to file latestlog.txt")
@@ -171,6 +168,28 @@ async def writelog(ctx: discord.Interaction):
         await ctx.response.send_message(embed=embSucces)
     else:
         ctx.response.send_message(embed=embNoPerms)
+
+
+@client.event
+async def on_message(msg: discord.Message):
+    global log
+    timestamp = int(time())
+    curdattime = datetime.fromtimestamp(timestamp)
+    log.append(f"[{curdattime}] <{msg.author}> messaged <{msg.content}> in <{msg.channel}>")
+
+@client.event
+async def on_message_edit(msgB: discord.Message, msg: discord.Message):
+    global log
+    timestamp = int(time())
+    curdattime = datetime.fromtimestamp(timestamp)
+    log.append(f"[{curdattime}] <{msg.author}> edited message from <{msgB.content}> to <{msg.content}> in <{msg.channel}>")
+
+@client.event
+async def on_message_delete(msg: discord.Message):
+    global log
+    timestamp = int(time())
+    curdattime = datetime.fromtimestamp(timestamp)
+    log.append(f"[{curdattime}] <{msg.author}> deleted message <{msg.content}> in <{msg.channel}>")
 
 @client.event
 async def on_ready():
