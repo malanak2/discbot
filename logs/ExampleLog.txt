@@ -1,0 +1,17 @@
+[2022-10-23 20:44:18] <"bot"> messaged <> in <purgechannel>
+[2022-10-23 20:44:18] <"user"> tried purging <purgechannel>
+[2022-10-23 20:44:20] <"bot"> edited message from <> to <> in <purgechannel>
+[2022-10-23 20:44:28] <"User"> messaged <Example message> in <purgechannel>
+[2022-10-23 20:44:49] Added role <no> to <"user">
+[2022-10-23 20:44:50] <"bot"> messaged <> in <purgechannel>
+[2022-10-23 20:44:56] Removed role <no> from <"user">
+[2022-10-23 20:44:57] <"bot"> messaged <> in <purgechannel>
+[2022-10-23 20:45:00] <"bot"> messaged <> in <purgechannel>
+[2022-10-23 20:45:00] <"user"> tried purging <purgechannel>
+[2022-10-23 20:45:02] <"bot"> edited message from <> to <> in <purgechannel>
+[2022-10-23 20:45:03] <"bot"> deleted message <> in <purgechannel>
+[2022-10-23 20:45:03] <"bot"> deleted message <> in <purgechannel>
+[2022-10-23 20:45:04] <"user"> deleted message <Example message> in <purgechannel>
+[2022-10-23 20:45:04] <"bot"> deleted message <> in <purgechannel>
+[2022-10-23 20:44:20] <"user"> didnt purge <purgechannel>
+[2022-10-23 20:45:02] <"user"> purged <purgechannel>
