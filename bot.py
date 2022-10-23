@@ -54,12 +54,15 @@ async def roll(ctx: discord.Interaction):
                 user = ctx.user
                 role = ctx.guild.get_role(1030846154537177108)
                 ifhasrole = ctx.user.roles.__contains__(role)
-                log.append(f"<{ctx.user}> has rolled 42!")
+                timestamp = int(time())
+                curdattime = datetime.fromtimestamp(timestamp)
                 embRespWin = Embed(title="Roll", description=f"You have rolled 42, the answer to everything, on the 100-sided dice and won the **{role.name}** role!", color=discord.Color.red())
-                embRespWinMore = Embed(title="Roll", description=f"You, **{ctx.user.name}**, have rolled 21 again! What a miracle!\n Sadly, there is no reward for that, at least not yet", color=discord.Color.yellow())
+                embRespWinMore = Embed(title="Roll", description=f"You, **{ctx.user.name}**, have rolled 42 again! What a miracle!\n Sadly, there is no reward for that, at least not yet", color=discord.Color.yellow())
                 if ifhasrole:
+                    log.append(f"[{curdattime}] : <{ctx.user}> has rolled 42! (more than first time)")
                     await ctx.response.send_message(embed=embRespWinMore)
                 else:
+                    log.append(f"[{curdattime}] : <{ctx.user}> has rolled 42!")
                     await ctx.response.send_message(embed=embRespWin)
                     await user.add_roles(role)
             case _:
@@ -75,8 +78,10 @@ async def addrole(ctx: discord.Interaction, user: discord.User, role: discord.Ro
         if not user.roles.__contains__(role):
             global log
             try:
-                print(f"Added role <{role}> to <{user}>")
-                log.append(f"Added role <{role}> to <{user}>")
+                timestamp = int(time())
+                curdattime = datetime.fromtimestamp(timestamp)
+                print(f"[{curdattime}] Added role <{role}> to <{user}>")
+                log.append(f"[{curdattime}] Added role <{role}> to <{user}>")
                 await user.add_roles(role)
                 embAddRole = Embed(title="Role Manager", description=f"Added role {role.name} to {user.name}", color=discord.Color.green())
                 await ctx.response.send_message(embed=embAddRole)
@@ -98,8 +103,10 @@ async def addrole(ctx: discord.Interaction, user: discord.User, role: discord.Ro
         global log
         if user.roles.__contains__(role):
             try:
-                print(f"Removed role <{role}> from <{user}>")
-                log.append(f"Removed role <{role}> from <{user}>")
+                timestamp = int(time())
+                curdattime = datetime.fromtimestamp(timestamp)
+                print(f"[{curdattime}] Removed role <{role}> from <{user}>")
+                log.append(f"[{curdattime}] Removed role <{role}> from <{user}>")
                 await user.remove_roles(role)
                 embRemRole = Embed(title="Role Manager", description=f"Removed role {role.name} from {user.name}", color=discord.Color.green())
                 await ctx.response.send_message(embed=embRemRole)
@@ -123,10 +130,12 @@ async def addrole(ctx: discord.Interaction, user: discord.User, role: discord.Ro
 async def purge(ctx: discord.Interaction):
     global log
     if ctx.user.roles.__contains__(ctx.guild.get_role(adminRoleId)):
+        timestamp = int(time())
+        curdattime = datetime.fromtimestamp(timestamp)
         embAsk = Embed(title="Purge", description="Are you sure?", color=discord.Color.red())
         await ctx.response.send_message(embed=embAsk, view=Buttons())
         print(f"<{ctx.user}> tried purging <{ctx.channel.name}>")
-        log.append((f"<{ctx.user}> tried purging <{ctx.channel.name}>"))
+        log.append((f"[{curdattime}] <{ctx.user}> tried purging <{ctx.channel.name}>"))
     else:
         await ctx.response.send_message(embed=embNoPerms)
 

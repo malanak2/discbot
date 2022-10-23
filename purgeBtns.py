@@ -1,6 +1,8 @@
 # prugeBtns.py
 
+import datetime
 import os
+import time
 import discord
 from dotenv import load_dotenv
 load_dotenv()
@@ -24,8 +26,10 @@ class Buttons(discord.ui.View):
             async for message in channel.history():
                 if not message == ctx.message:
                     await message.delete(delay=1)
+            timestamp = int(time())
+            curdattime = datetime.fromtimestamp(timestamp)
             print(f"<{ctx.user}> purged <{ctx.channel}>")
-            log.append(f"<{ctx.user}> purged <{ctx.channel}>")
+            log.append(f"[{curdattime}] <{ctx.user}> purged <{ctx.channel}>")
             await ctx.response.edit_message(embed=embPurged, view=view)
 
     @discord.ui.button(label="No",style=discord.ButtonStyle.green)
@@ -34,10 +38,12 @@ class Buttons(discord.ui.View):
         adRoleId = int(os.getenv('ADMINROLE'))
         adRole = ctx.guild.get_role(adRoleId)
         if ctx.user.roles.__contains__(adRole):
+            timestamp = int(time())
+            curdattime = datetime.fromtimestamp(timestamp)
             view = Buttons()
             view.clear_items()
             print(f"<{ctx.user}> didnt purge <{ctx.channel}>")
-            log.append(f"<{ctx.user}> didnt purge <{ctx.channel}>")
+            log.append(f"[{curdattime}] <{ctx.user}> didnt purge <{ctx.channel}>")
             embNotPurged = discord.Embed(title="Purge", description="Purge aborted", color=discord.Color.green())
             await ctx.response.edit_message(embed=embNotPurged, view=view)
 
