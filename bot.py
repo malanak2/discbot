@@ -22,8 +22,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
-rawJson = open('data.json')
-data = json.load(rawJson)
 log = []
 
 intents = discord.Intents.all()
@@ -53,9 +51,6 @@ async def roll(ctx: discord.Interaction):
     try:
         match num:
             case 42:
-                data["users"].append(ctx.user.name)
-                with open("data.json", "w") as jsFile:
-                    json.dump(data, jsFile)
                 user = ctx.user
                 role = ctx.guild.get_role(1030846154537177108)
                 ifhasrole = ctx.user.roles.__contains__(role)
