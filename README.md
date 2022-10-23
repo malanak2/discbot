@@ -25,7 +25,7 @@
     
 ## Required packages
                 
-1. [discord.py](https://pypi.org/project/discord.py/)
+1. [discord.py](https://pypi.org/project/discord2/)
 2. [dotenv](https://pypi.org/project/python-dotenv/)
                 
 
