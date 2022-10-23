@@ -1,5 +1,0 @@
-<2022-10-15 21:20:21> : <malanakCZ#1590> : <test-soukrome> : <a>
-<2022-10-15 21:20:27> : <malanakCZ#1590> : <test-soukrome> : <Ok>
-<2022-10-15 21:20:33> : <private_bot#9229> : <test-soukrome> : <>
-Added role <42> to <malanakCZ#1590>
-<2022-10-15 21:20:45> : <private_bot#9229> : <test-soukrome> : <>

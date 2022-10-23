@@ -1,9 +1,0 @@
-Date and time <2022-10-15 21:23:07> : Author <malanakCZ#1590> : Msg Channel <test-soukrome> : Message <a> : Bot embeds []
-Date and time <2022-10-15 21:23:12> : Author <private_bot#9229> : Msg Channel <test-soukrome> : Message <> : Bot embeds [<discord.embeds.Embed object at 0x000002127403CCA0>]
-<malanakCZ#1590> tried purging <test-soukrome>
-<malanakCZ#1590> purged <test-soukrome>
-Date and time <2022-10-15 21:23:18> : Author <private_bot#9229> : Msg Channel <test-soukrome> : Message <> : Bot embeds [<discord.embeds.Embed object at 0x000002127403D1B0>]
-Date and time <2022-10-15 21:31:49> : Author <malanakCZ#1590> : Msg Channel <test-soukrome> : Message <logy go brrrrr> : Bot embeds []
-Date and time <2022-10-15 21:31:57> : Author <malanakCZ#1590> : Msg Channel <purgechannel> : Message <test logu 1> : Bot embeds []
-Date and time <2022-10-15 21:32:02> : Author <malanakCZ#1590> : Msg Channel <obecné> : Message <test logu 2> : Bot embeds []
-<malanakCZ#1590> purged <test-soukrome>
